@@ -591,7 +591,7 @@
           : "light";
 
       const applyTheme = (theme) => {
-        const applied = theme === "system" ? getSystemTheme() : theme;
+        const applied = theme === "light" ? getSystemTheme() : theme;
         document.documentElement.setAttribute("data-theme", applied);
       };
 
