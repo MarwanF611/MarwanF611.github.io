@@ -300,6 +300,25 @@
         border-top: 1px solid var(--border);
       }
 
+      /* cursor only active while typing */
+      #typing-name.typing::after {
+        content: "|";
+        margin-left: 2px;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        50%,
+        100% {
+          opacity: 1;
+        }
+        25%,
+        75% {
+          opacity: 0;
+        }
+      }
+
       @media (max-width: 600px) {
         nav {
           padding: 0 20px;
@@ -334,7 +353,10 @@
       <!-- HERO -->
       <section id="hero">
         <p class="section-label">Software Developer</p>
-        <h1>Hi, I'm <span>Marwan.</span><br />I build things for the web.</h1>
+        <h1>
+          Hi, I'm <span id="typing-name"></span><br />
+          I build things for the web.
+        </h1>
         <p>
           Full-stack developer based in Belgium. I build clean web applications,
           mobile apps, and everything in between — from concept to deployment.
@@ -353,6 +375,12 @@
             class="btn btn-secondary"
           >
             GitHub
+          </a>
+          <a
+            href="mailto:marwan.fikri200@gmail.com?subject=Contact from portfolio&body=Hi Marwan,%0D%0A%0D%0AI found your website and would like to get in touch."
+            class="btn btn-secondary"
+          >
+            Email me
           </a>
         </div>
       </section>
@@ -583,6 +611,27 @@
       </div>
     </footer>
     <script>
+      const nameText = "Marwan.";
+      const typingElement = document.getElementById("typing-name");
+
+      let index = 0;
+
+      // add typing class (shows cursor)
+      typingElement.classList.add("typing");
+
+      function type() {
+        if (index < nameText.length) {
+          typingElement.textContent += nameText.charAt(index);
+          index++;
+          setTimeout(type, 200); // 👈 slower typing (adjust here)
+        } else {
+          // remove cursor after done
+          typingElement.classList.remove("typing");
+        }
+      }
+
+      type();
+
       const select = document.getElementById("theme-select");
 
       const getSystemTheme = () =>
@@ -591,7 +640,7 @@
           : "light";
 
       const applyTheme = (theme) => {
-        const applied = theme === "system" ? getSystemTheme() : theme;
+        const applied = theme === "Light" ? getSystemTheme() : theme;
         document.documentElement.setAttribute("data-theme", applied);
       };
 
@@ -605,11 +654,13 @@
         applyTheme(theme);
       });
 
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        if ((localStorage.getItem("theme") || "system") === "system") {
-          applyTheme("system");
-        }
-      });
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          if ((localStorage.getItem("theme") || "system") === "system") {
+            applyTheme("system");
+          }
+        });
     </script>
   </body>
 </html>
