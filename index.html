@@ -1,432 +1,615 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marwan Fikri</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marwan Fikri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --blue: #1a6bff;
-      --black: #0d0d0d;
-      --white: #ffffff;
-      --gray: #f5f5f5;
-      --text-muted: #6b6b6b;
-      --border: #e8e8e8;
-    }
+      :root {
+        --blue: #1a6bff;
+        --black: #0d0d0d;
+        --white: #ffffff;
+        --gray: #f5f5f5;
+        --text-muted: #6b6b6b;
+        --border: #e8e8e8;
+      }
 
-    html { scroll-behavior: smooth; }
+      [data-theme="dark"] {
+        --blue: #4d8dff;
+        --black: #ffffff;
+        --white: #0d0d0d;
+        --gray: #1a1a1a;
+        --text-muted: #a1a1a1;
+        --border: #2a2a2a;
+      }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      line-height: 1.6;
-      font-size: 15px;
-    }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 40px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--white);
+        color: var(--black);
+        line-height: 1.6;
+        font-size: 15px;
+      }
 
-    nav .logo {
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: -0.02em;
-      color: var(--black);
-      text-decoration: none;
-    }
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: var(--white);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 40px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 32px;
-    }
+      nav .logo {
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+        color: var(--black);
+        text-decoration: none;
+      }
 
-    nav ul a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 14px;
-      font-weight: 400;
-      transition: color 0.15s;
-    }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+      }
 
-    nav ul a:hover { color: var(--black); }
+      nav ul a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 400;
+        transition: color 0.15s;
+      }
 
-    /* MAIN LAYOUT */
-    main {
-      padding-top: 60px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding-left: 40px;
-      padding-right: 40px;
-    }
+      nav ul a:hover {
+        color: var(--black);
+      }
 
-    section {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-    }
+      /* MAIN LAYOUT */
+      main {
+        padding-top: 60px;
+        max-width: 900px;
+        margin: 0 auto;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
 
-    section:last-child { border-bottom: none; }
+      section {
+        padding: 80px 0;
+        border-bottom: 1px solid var(--border);
+      }
 
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 40px;
-    }
+      section:last-child {
+        border-bottom: none;
+      }
 
-    /* HERO */
-    #hero {
-      padding-top: 100px;
-      padding-bottom: 80px;
-    }
+      .section-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 40px;
+      }
 
-    #hero h1 {
-      font-size: clamp(36px, 6vw, 58px);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: var(--black);
-    }
+      /* HERO */
+      #hero {
+        padding-top: 100px;
+        padding-bottom: 80px;
+      }
 
-    #hero h1 span {
-      color: var(--blue);
-    }
+      #hero h1 {
+        font-size: clamp(36px, 6vw, 58px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
 
-    #hero p {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 36px;
-    }
+      #hero h1 span {
+        color: var(--blue);
+      }
 
-    .hero-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+      #hero p {
+        font-size: 16px;
+        color: var(--text-muted);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-bottom: 36px;
+      }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
+      .hero-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
 
-    .btn:hover { opacity: 0.8; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
 
-    .btn-primary {
-      background: var(--black);
-      color: var(--white);
-    }
+      .btn:hover {
+        opacity: 0.8;
+      }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--black);
-      border: 1px solid var(--border);
-    }
+      .btn-primary {
+        background: var(--black);
+        color: var(--white);
+      }
 
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+      .btn-secondary {
+        background: transparent;
+        color: var(--black);
+        border: 1px solid var(--border);
+      }
 
-    .project-card {
-      background: var(--white);
-      padding: 28px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 1px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
 
-    .project-card:last-child { border-bottom: none; }
+      .project-card {
+        background: var(--white);
+        padding: 28px;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
 
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
+      .project-card:last-child {
+        border-bottom: none;
+      }
 
-    .project-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--black);
-      letter-spacing: -0.01em;
-    }
+      .project-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
 
-    .project-link {
-      font-size: 12px;
-      color: var(--blue);
-      text-decoration: none;
-      font-weight: 500;
-      white-space: nowrap;
-      margin-left: 12px;
-      flex-shrink: 0;
-    }
+      .project-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--black);
+        letter-spacing: -0.01em;
+      }
 
-    .project-link:hover { text-decoration: underline; }
+      .project-link {
+        font-size: 12px;
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 500;
+        white-space: nowrap;
+        margin-left: 12px;
+        flex-shrink: 0;
+      }
 
-    .project-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
+      .project-link:hover {
+        text-decoration: underline;
+      }
 
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+      .project-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.65;
+        margin-bottom: 16px;
+      }
 
-    .tag {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 9px;
-      border-radius: 4px;
-      background: var(--gray);
-      color: var(--text-muted);
-      letter-spacing: 0.01em;
-    }
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
 
-    .tag-blue {
-      background: #e8f0ff;
-      color: var(--blue);
-    }
+      .tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 9px;
+        border-radius: 4px;
+        background: var(--gray);
+        color: var(--text-muted);
+        letter-spacing: 0.01em;
+      }
 
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 8px;
-    }
+      .tag-blue {
+        background: #e8f0ff;
+        color: var(--blue);
+      }
 
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--black);
-    }
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 8px;
+      }
 
-    .skill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      flex-shrink: 0;
-    }
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--black);
+      }
 
-    /* CONTACT */
-    .contact-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+      .skill-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--blue);
+        flex-shrink: 0;
+      }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 32px 40px;
-      font-size: 12px;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-    }
+      /* CONTACT */
+      .contact-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
 
-    @media (max-width: 600px) {
-      nav { padding: 0 20px; }
-      nav ul { gap: 20px; }
-      main { padding-left: 20px; padding-right: 20px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      #hero { padding-top: 60px; }
-    }
-  </style>
-</head>
-<body>
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 32px 40px;
+        font-size: 12px;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
 
-  <nav>
-    <a href="#hero" class="logo">Marwan Fikri</a>
-    <ul>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+      @media (max-width: 600px) {
+        nav {
+          padding: 0 20px;
+        }
+        nav ul {
+          gap: 20px;
+        }
+        main {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        #hero {
+          padding-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#hero" class="logo">Marwan Fikri</a>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-  <main>
+    <main>
+      <!-- HERO -->
+      <section id="hero">
+        <p class="section-label">Software Developer</p>
+        <h1>Hi, I'm <span>Marwan.</span><br />I build things for the web.</h1>
+        <p>
+          Full-stack developer based in Belgium. I build clean web applications,
+          mobile apps, and everything in between — from concept to deployment.
+        </p>
+        <div class="hero-links">
+          <a
+            href="https://www.linkedin.com/in/marwan-fikri-33a617348/"
+            target="_blank"
+            class="btn btn-primary"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/MarwanF611"
+            target="_blank"
+            class="btn btn-secondary"
+          >
+            GitHub
+          </a>
+        </div>
+      </section>
 
-    <!-- HERO -->
-    <section id="hero">
-      <p class="section-label">Software Developer</p>
-      <h1>Hi, I'm <span>Marwan.</span><br>I build things for the web.</h1>
-      <p>
-        Full-stack developer based in Belgium. I build clean web applications,
-        mobile apps, and everything in between — from concept to deployment.
-      </p>
-      <div class="hero-links">
-        <a href="https://www.linkedin.com/in/marwan-fikri-33a617348/" target="_blank" class="btn btn-primary">
-          LinkedIn
-        </a>
-        <a href="https://github.com/MarwanF611" target="_blank" class="btn btn-secondary">
-          GitHub
-        </a>
+      <!-- PROJECTS -->
+      <section id="projects">
+        <p class="section-label">Projects</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">ABS Moto Service</span>
+              <a
+                href="https://absmotoservice.be"
+                target="_blank"
+                class="project-link"
+                >↗ absmotoservice.be</a
+              >
+            </div>
+            <p class="project-desc">
+              Website for a motor and scooter repair garage. Clean client-facing
+              site with service overview and contact.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">Next.js</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">GoMartLib</span>
+              <a
+                href="https://gomartlib.tech"
+                target="_blank"
+                class="project-link"
+                >↗ gomartlib.tech</a
+              >
+            </div>
+            <p class="project-desc">
+              Library management application for GO Antwerpen school. Full-stack
+              solution for managing books and students.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">Spring Boot</span>
+              <span class="tag tag-blue">React</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">Adivent</span>
+              <a href="https://adivent.be" target="_blank" class="project-link"
+                >↗ adivent.be</a
+              >
+            </div>
+            <p class="project-desc">
+              Corporate website for a company specialised in asbestos
+              certificates (asbest attest). Built for credibility and lead
+              generation.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">Next.js</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">Refund hunters</span>
+              <a
+                href="https://refund-hunter-landing.vercel.app/"
+                target="_blank"
+                class="project-link"
+                >↗ refund-hunter-landing.vercel.app/</a
+              >
+            </div>
+            <p class="project-desc">
+              A school project for out minor startup where we help people who
+              want to refund their train or plain ticket because of delays.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">Next.js</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">BallieConnect</span>
+            </div>
+            <p class="project-desc">
+              Mobile app to connect football players — like Playtomic but for
+              football. Find matches, join games, build a local football
+              network.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">React Native</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-name">Toesteldelen</span>
+            </div>
+            <p class="project-desc">
+              Peer-to-peer equipment rental app where users can lend and borrow
+              items for a few days within their community.
+            </p>
+            <div class="tech-tags">
+              <span class="tag tag-blue">Flutter</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <p class="section-label">Technologies</p>
+        <div class="skills-grid">
+          <div class="skill-item"><span class="skill-dot"></span>.NET</div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>Spring Boot
+          </div>
+          <div class="skill-item"><span class="skill-dot"></span>React</div>
+          <div class="skill-item"><span class="skill-dot"></span>Next.js</div>
+          <div class="skill-item"><span class="skill-dot"></span>Angular</div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>React Native
+          </div>
+          <div class="skill-item"><span class="skill-dot"></span>Flutter</div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>TypeScript
+          </div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>JavaScript
+          </div>
+          <div class="skill-item"><span class="skill-dot"></span>SQL</div>
+          <div class="skill-item"><span class="skill-dot"></span>Docker</div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>Claude Code
+          </div>
+          <div class="skill-item"><span class="skill-dot"></span>Cursor</div>
+          <div class="skill-item"><span class="skill-dot"></span>Supabase</div>
+          <div class="skill-item"><span class="skill-dot"></span>NodeJs</div>
+          <div class="skill-item">
+            <span class="skill-dot"></span>PostgreSQL
+          </div>
+          <div class="skill-item"><span class="skill-dot"></span>Vercel</div>
+          <div class="skill-item"><span class="skill-dot"></span>Firebase</div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <p class="section-label">Connect</p>
+        <h2
+          style="
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+          "
+        >
+          Let's get in touch.
+        </h2>
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 28px;
+            max-width: 400px;
+          "
+        >
+          Open to internship opportunities. Feel free to reach out on LinkedIn
+          or check out my work on GitHub.
+        </p>
+
+        <div class="contact-row">
+          <a
+            href="https://www.linkedin.com/in/marwan-fikri-33a617348/"
+            target="_blank"
+            class="btn btn-primary"
+            >LinkedIn</a
+          >
+          <a
+            href="https://github.com/MarwanF611"
+            target="_blank"
+            class="btn btn-secondary"
+            >GitHub</a
+          >
+
+          <a
+            href="mailto:marwan.fikri200@gmail.com?subject=Contact from portfolio&body=Hi Marwan,%0D%0A%0D%0AI found your website and would like to get in touch."
+            class="btn btn-secondary"
+          >
+            Email me
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+        "
+      >
+        <span>© 2026 Marwan Fikri</span>
+
+        <select
+          id="theme-select"
+          style="
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--black);
+            cursor: pointer;
+          "
+        >
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
       </div>
-    </section>
+    </footer>
+    <script>
+      const select = document.getElementById("theme-select");
 
-    <!-- PROJECTS -->
-    <section id="projects">
-      <p class="section-label">Projects</p>
-      <div class="projects-grid">
+      const getSystemTheme = () =>
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">ABS Moto Service</span>
-            <a href="https://absmotoservice.be" target="_blank" class="project-link">↗ absmotoservice.be</a>
-          </div>
-          <p class="project-desc">Website for a motor and scooter repair garage. Clean client-facing site with service overview and contact.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">Next.js</span>
-          </div>
-        </div>
+      const applyTheme = (theme) => {
+        const applied = theme === "system" ? getSystemTheme() : theme;
+        document.documentElement.setAttribute("data-theme", applied);
+      };
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">GoMartLib</span>
-            <a href="https://gomartlib.tech" target="_blank" class="project-link">↗ gomartlib.tech</a>
-          </div>
-          <p class="project-desc">Library management application for GO Antwerpen school. Full-stack solution for managing books and students.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">Spring Boot</span>
-            <span class="tag tag-blue">React</span>
-            <span class="tag">SQL</span>
-          </div>
-        </div>
+      const savedTheme = localStorage.getItem("theme") || "system";
+      select.value = savedTheme;
+      applyTheme(savedTheme);
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">Adivent</span>
-            <a href="https://adivent.be" target="_blank" class="project-link">↗ adivent.be</a>
-          </div>
-          <p class="project-desc">Corporate website for a company specialised in asbestos certificates (asbest attest). Built for credibility and lead generation.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">Next.js</span>
-          </div>
-        </div>
+      select.addEventListener("change", (e) => {
+        const theme = e.target.value;
+        localStorage.setItem("theme", theme);
+        applyTheme(theme);
+      });
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">Refund hunters</span>
-            <a href="https://refund-hunter-landing.vercel.app/" target="_blank" class="project-link">↗ refund-hunter-landing.vercel.app/</a>
-          </div>
-          <p class="project-desc">A school project for out minor startup where we help people who want to refund their train or plain ticket because of delays.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">Next.js</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">BallieConnect</span>
-          </div>
-          <p class="project-desc">Mobile app to connect football players — like Playtomic but for football. Find matches, join games, build a local football network.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">React Native</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">Toesteldelen</span>
-          </div>
-          <p class="project-desc">Peer-to-peer equipment rental app where users can lend and borrow items for a few days within their community.</p>
-          <div class="tech-tags">
-            <span class="tag tag-blue">Flutter</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <p class="section-label">Technologies</p>
-      <div class="skills-grid">
-        <div class="skill-item"><span class="skill-dot"></span>.NET</div>
-        <div class="skill-item"><span class="skill-dot"></span>Spring Boot</div>
-        <div class="skill-item"><span class="skill-dot"></span>React</div>
-        <div class="skill-item"><span class="skill-dot"></span>Next.js</div>
-        <div class="skill-item"><span class="skill-dot"></span>Angular</div>
-        <div class="skill-item"><span class="skill-dot"></span>React Native</div>
-        <div class="skill-item"><span class="skill-dot"></span>Flutter</div>
-        <div class="skill-item"><span class="skill-dot"></span>TypeScript</div>
-        <div class="skill-item"><span class="skill-dot"></span>JavaScript</div>
-        <div class="skill-item"><span class="skill-dot"></span>SQL</div>
-        <div class="skill-item"><span class="skill-dot"></span>Docker</div>
-        <div class="skill-item"><span class="skill-dot"></span>Claude Code</div>
-        <div class="skill-item"><span class="skill-dot"></span>Supabase</div>
-        <div class="skill-item"><span class="skill-dot"></span>NodeJs</div>
-        <div class="skill-item"><span class="skill-dot"></span>PostgreSQL</div>
-        <div class="skill-item"><span class="skill-dot"></span>Vercel</div>
-        <div class="skill-item"><span class="skill-dot"></span>Firebase</div>
-
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <p class="section-label">Connect</p>
-      <h2 style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px;">Let's get in touch.</h2>
-      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 28px; max-width: 400px;">
-        Open to internship opportunities. Feel free to reach out on LinkedIn or check out my work on GitHub.
-      </p>
-      <div class="contact-row">
-        <a href="https://www.linkedin.com/in/marwan-fikri-33a617348/" target="_blank" class="btn btn-primary">LinkedIn</a>
-        <a href="https://github.com/MarwanF611" target="_blank" class="btn btn-secondary">GitHub</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    © 2025 Marwan Fikri
-  </footer>
-
-</body>
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if ((localStorage.getItem("theme") || "system") === "system") {
+          applyTheme("system");
+        }
+      });
+    </script>
+  </body>
 </html>
